@@ -1,0 +1,28 @@
+{
+  "name": "cricket-score-board-app",
+  "version": "1.0.0",
+  "description": "Cricket score board board applicaton using angularJS 1.6.2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prince3339/Cricket-Score-board-app.git"
+  },
+  "keywords": [
+    "cricker",
+    "app",
+    "angularJS",
+    "angular",
+    "material",
+    "sass",
+    "javascript"
+  ],
+  "author": "Sabbir Ahmed Siddiquee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prince3339/Cricket-Score-board-app/issues"
+  },
+  "homepage": "https://github.com/prince3339/Cricket-Score-board-app#readme"
+}
