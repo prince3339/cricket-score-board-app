@@ -13,7 +13,7 @@
             var matches = JSON.parse(localStorage.getItem('matches'));
 
             return matches.filter(function(match) {
-                return match.matchID = matchID;
+                return match.matchID == matchID;
             });
         }
     }
