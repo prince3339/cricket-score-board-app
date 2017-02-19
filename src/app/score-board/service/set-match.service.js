@@ -26,11 +26,11 @@
         function setMatch(match) {
             if (localStorage.matches) {
                 matches = JSON.parse(localStorage.getItem("matches"));
-                match.matchId = matches.length + 1;
+                match.matchID = matches.length + 1;
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             } else {
-                match.matchId = 1;
+                match.matchID = 1;
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             }

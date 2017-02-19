@@ -15,7 +15,9 @@
             })
             .state('play', {
                 url: '/play/{matchId}/{over}/{ball}',
-                templateUrl: 'src/app/score-board/view/play-game.view.html'
+                templateUrl: 'src/app/score-board/view/play-game.view.html',
+                controller: 'playGameController',
+                controllerAs: 'vm'
             });
         $urlRouterProvider
             .otherwise('/start');
