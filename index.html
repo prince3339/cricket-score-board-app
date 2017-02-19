@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cricket Score Board App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="/src/lib/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="cricketGame" ng-cloak>
+    <!--
+    Your HTML content here
+  -->
+    <div>
+        <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+                <h3>
+                    <span>Cricket Score App</span>
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content class="padding-h-32">
+            <ui-view></ui-view>
+        </md-content>
+    </div>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="/src/lib/angularjs/angular.min.js"></script>
+    <script src="/src/lib/angularjs/angular-animate.min.js"></script>
+    <script src="/src/lib/angularjs/angular-aria.min.js"></script>
+    <script src="/src/lib/angularjs/angular-messages.min.js"></script>
+
+    <!--UI-Router module-->
+    <script src="/src/lib/ui-router/angular-ui-router.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="/src/lib/angular-material/angular-material.min.js"></script>
+
+    <!--main app module (cricketScore)-->
+    <script src="/src/app/cricket-game.module.js"></script>
+    <script src="/src/app/cricket-game.routes.js"></script>
+    <!--score-board-->
+    <script src="/src/app/score-board/score-board.module.js"></script>
+    <script src="/src/app/score-board/service/set-match.service.js"></script>
+    <script src="/src/app/score-board/controller/set-match.controller.js"></script>
+    <script src="/src/app/score-board/controller/play-game.controller.js"></script>
+</body>
+
+</html>

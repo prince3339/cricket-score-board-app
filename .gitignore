@@ -1,0 +1,8 @@
+node_modules/
+.sass-cache
+._.DS_Store
+.DS_Store
+dist/
+bower_components/
+.vscode
+debug.log

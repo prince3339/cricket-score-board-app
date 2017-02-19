@@ -1,0 +1,6 @@
+.margin-normal {
+    margin: 16px
+}
+
+@include setGaps('margin', 0, 40);
+@include setGaps('margin', 1, 12, 8, 5);

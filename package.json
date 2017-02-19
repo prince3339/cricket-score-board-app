@@ -1,8 +1,21 @@
 {
   "name": "cricket-score-board-app",
   "version": "1.0.0",
-  "description": "Cricket score board board applicaton using angularJS 1.6.2",
-  "main": "index.js",
+  "description": "Cricket score board application using angularJS",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-htmlmin": "^2.2.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-processhtml": "^0.4.1",
+    "grunt-uncss": "^0.6.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,17 +23,8 @@
     "type": "git",
     "url": "git+https://github.com/prince3339/Cricket-Score-board-app.git"
   },
-  "keywords": [
-    "cricker",
-    "app",
-    "angularJS",
-    "angular",
-    "material",
-    "sass",
-    "javascript"
-  ],
-  "author": "Sabbir Ahmed Siddiquee",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/prince3339/Cricket-Score-board-app/issues"
   },

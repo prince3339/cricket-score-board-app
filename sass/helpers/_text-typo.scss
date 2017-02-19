@@ -1,0 +1,133 @@
+/* Text alignment */
+.text-center {
+    text-align: center!important
+}
+
+.text-left {
+    text-align: left !important
+}
+
+.text-right {
+    text-align: right !important
+}
+
+.text-super {
+    vertical-align: super;
+}
+
+.text-sub{
+    vertical-align: sub;
+}
+
+/* Text transform */
+.text-lowercase {
+    text-transform: lowercase
+}
+
+.text-uppercase {
+    text-transform: uppercase
+}
+
+.text-capitalize {
+    text-transform: capitalize
+}
+
+.text-defaultcase {
+    text-transform: none !important;
+}
+
+/* Text style */
+.text-default {
+    font-style: normal
+}
+
+.text-italic {
+    font-style: italic
+}
+
+.text-strike{
+    text-decoration: line-through;
+}
+
+/*text weight*/
+.text-semibold{
+    font-weight: 600;
+}
+
+.text-bold, strong{
+    font-weight: 700;
+}
+
+/* Text color */
+.text-light {
+    color: $white !important
+}
+
+.text-dark {
+    color: $black !important
+}
+
+.text-gray {
+    color: color-opacity($black,.78) !important
+}
+
+/* Text overflow */
+.text-ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+    &.wrap {
+        white-space: normal;
+    }
+}
+
+[class^="text-line-clamp"],
+[class*=" text-line-clamp"],
+.text-line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text-line-clamp2 {
+    -webkit-line-clamp: 2;
+}
+
+.text-line-clamp3 {
+    -webkit-line-clamp: 3;
+}
+
+.text-nowrap{
+    white-space: nowrap;
+}
+
+.text-pre {
+    white-space: pre-wrap;
+}
+
+.text-block-line2 {
+  @include multiLineEllipsis(1.2em, 2, white);  
+}
+.text-block-line3 {
+  @include multiLineEllipsis(1.2em, 3, white);  
+}
+
+/* Box Style */
+.text-boxed, 
+.text-boxed-light {
+    border-radius: 2px;
+    padding: 4px 8px;
+    margin: 0 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: color-opacity($black,.54);
+    background-color: color-opacity($black,.12);
+    white-space: nowrap;
+    md-icon {
+        font-size: 11px;
+    }
+}
+.text-boxed-light {
+    background-color: color-opacity($white,.7);
+}

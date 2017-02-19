@@ -1,0 +1,23 @@
+//*********************
+//MAKE MOVES
+//*********************
+//*
+//USAGE: @include setMoves('move-from');
+//*
+@mixin setMoves($className){
+    $posList: top Y 1, left X 1, bottom Y -1, right X -1;
+    @for $i from 0 through 10 {
+        $value: $i * 10;
+        @each $pos in $posList{
+            $posName: nth($pos, 1);
+            $transPos: nth($pos, 2);
+            $transPosVal: nth($pos, 3);
+            $val: translate#{$transPos +'(' + $value * $transPosVal * 1px + ')'};
+            .#{$className}-#{$posName}-#{$value}{
+                @include web-prefix(transform, $val);
+            }
+        }
+    }
+}
+// CSS
+@include setMoves('move-from');

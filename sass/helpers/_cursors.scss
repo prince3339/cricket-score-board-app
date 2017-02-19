@@ -1,0 +1,52 @@
+﻿.cur-auto            { cursor: auto; }
+.cur-default         { cursor: default; }
+.cur-none            { cursor: none; }
+.cur-context-menu    { cursor: context-menu; }
+.cur-help            { cursor: help; }
+.cur-pointer         { cursor: pointer; }
+.cur-progress        { cursor: progress; }
+.cur-wait            { cursor: wait; }
+.cur-cell            { cursor: cell; }
+.cur-crosshair       { cursor: crosshair; }
+.cur-text            { cursor: text; }
+.cur-vertical-text   { cursor: vertical-text; }
+.cur-alias           { cursor: alias; }
+.cur-copy            { cursor: copy; }
+.cur-move            { cursor: move; }
+.cur-no-drop         { cursor: no-drop; }
+.cur-not-allowed     { cursor: not-allowed; }
+.cur-all-scroll      { cursor: all-scroll; }
+.cur-col-resize      { cursor: col-resize; }
+.cur-row-resize      { cursor: row-resize; }
+.cur-n-resize        { cursor: n-resize; }
+.cur-e-resize        { cursor: e-resize; }
+.cur-s-resize        { cursor: s-resize; }
+.cur-w-resize        { cursor: w-resize; }
+.cur-ns-resize       { cursor: ns-resize; }
+.cur-ew-resize       { cursor: ew-resize; }
+.cur-ne-resize       { cursor: ne-resize; }
+.cur-nw-resize       { cursor: nw-resize; }
+.cur-se-resize       { cursor: se-resize; }
+.cur-sw-resize       { cursor: sw-resize; }
+.cur-nesw-resize     { cursor: nesw-resize; }
+.cur-nwse-resize     { cursor: nwse-resize; }
+.cur-zoom-in {
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+}
+cur-zoom-out {
+    cursor: -webkit-zoom-out;
+    cursor: zoom-out;
+}
+.cur-grab { 
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    cursor: url(http://www.google.com/intl/en_ALL/mapfiles/openhand.cur), move; 
+}
+.cur-grabbing { 
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    cursor: url(http://www.google.com/intl/en_ALL/mapfiles/closedhand.cur), move; 
+}

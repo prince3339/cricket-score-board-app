@@ -1,0 +1,44 @@
+﻿// dark theme
+body[md-theme="dark"] {
+    background-color: $dark-bg-color
+}
+
+.md-dark-theme {
+    color: color-opacity($white, .7)!important;
+    a {
+        color: $white;
+    }
+}
+
+// icons
+md-icon[md-font-icon] {
+    height: auto;
+    font-size: 2rem;
+    &:focus {
+        outline: none
+    }
+    //+ span.v-mid{
+    //    margin-left: 3px;
+    //}
+}
+
+// cards
+md-card md-card-content {
+    display: block
+}
+
+//list
+.md-list-item-inner {
+    max-width: 100%;
+    box-sizing: border-box
+}
+
+.md-clickable{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+md-list md-list-item button.md-button:not([disabled]):hover {
+    background-color: rgba(158, 158, 158, 0.2) !important;
+}

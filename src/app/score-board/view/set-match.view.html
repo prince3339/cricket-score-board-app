@@ -1,0 +1,41 @@
+<div class="margin-top-32">
+    <form name="matchSelectForm" ng-submit="vm.startGame()" novalidate>
+        <div layout="row">
+            <div class="margin-right-32">
+                <label class="font-size-fixed-16" for="">Select Teams</label>
+                <md-input-container class="font-size-fixed-16 md-block">
+                    <label>Select Team 1</label>
+                    <md-select ng-model="vm.teamOne" required name="teamOne">
+                        <md-optgroup label="Group A">
+                            <md-option ng-value="country" ng-repeat="country in vm.groupOne">{{country}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <!--<div ng-messages="matchSelectForm.teamOne.$error">
+                        <div ng-message="required">Please select Team One</div>
+                    </div>-->
+                </md-input-container>
+
+                <md-input-container class="font-size-fixed-16 md-block margin-top-40">
+                    <label>Select Team 2</label>
+                    <md-select ng-model="vm.teamTwo" required name="teamTwo">
+                        <md-optgroup label="Group B">
+                            <md-option ng-value="country" ng-repeat="country in vm.groupTwo">{{country}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <!--<div ng-messages="matchSelectForm.teamTwo.$error">
+                        <div ng-message="required">Please select Team Two</div>
+                    </div>-->
+                </md-input-container>
+            </div>
+            <div>
+                <label class="font-size-fixed-16" for="bowlingStatus"> Choose bowling </label>
+                <md-radio-group ng-model="vm.bowlingStatus">
+                    <md-radio-button checked value="teamOne" class="md-primary margin-top-32" aria-label="Bowling status"></md-radio-button>
+                    <md-radio-button value="teamTwo" class="margin-top-60" aria-label="Bowling status"></md-radio-button>
+                </md-radio-group>
+
+            </div>
+        </div>
+        <md-button ng-disabled="matchSelectForm.$invalid" type="submit" class="md-raised md-primary margin-0" aria-label="Play button">Play</md-button>
+    </form>
+</div>

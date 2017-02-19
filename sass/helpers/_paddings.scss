@@ -1,0 +1,10 @@
+.padding-normal {
+    padding: 16px
+}
+
+.padded-content-page {
+    padding: 16px 24px
+}
+
+@include setGaps('padding');
+@include setGaps('padding', 1, 12, 8, 5);

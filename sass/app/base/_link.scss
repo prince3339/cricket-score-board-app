@@ -1,0 +1,23 @@
+a {
+    //@include font-weight-color(700);
+    color: #808080;
+    text-decoration: none;
+    transition: color 0.2s linear 0.1s;
+    &:hover {
+        color: #808080;
+        font-weight: bold;
+        transition: color 0.2s linear 0.1s;
+    }
+    &:active {
+        color: #808080;
+        font-weight: bold;
+        transition: color 0.2s linear 0.1s;
+    }
+    &:focus {
+        color: #808080;
+        font-weight: bold;
+        outline: 0;
+        text-decoration: none !important;
+        transition: color 0.2s linear 0.1s;
+    }
+}

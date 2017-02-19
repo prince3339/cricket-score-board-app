@@ -1,0 +1,15 @@
+﻿.dir-flip-h {
+    @include web-prefix(transform, scale(-1, 1));
+}
+.dir-flip-v {
+    @include web-prefix(transform, scale(1, -1));
+}
+.dir-rotate-r {
+    @include web-prefix(transform, rotate(90deg));
+}
+.dir-rotate-b {
+    @include web-prefix(transform, rotate(180deg));
+}
+.dir-rotate-l {
+    @include web-prefix(transform, rotate(270deg));
+}

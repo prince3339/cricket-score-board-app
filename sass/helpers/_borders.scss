@@ -1,0 +1,41 @@
+﻿$border-color: color-opacity($black, 0.12);
+$pos-list: top right bottom left;
+.border{
+    border: 1px solid $border-color !important;
+}
+@each $pos in $pos-list{
+    $property-name: border-#{$pos};
+    .#{$property-name}{
+        #{$property-name}: 1px solid $border-color !important;
+    }
+}
+.border-h {
+    border-left: 1px solid $border-color !important;
+    border-right: 1px solid $border-color !important;
+}
+.border-v {
+    border-top: 1px solid $border-color !important;
+    border-bottom: 1px solid $border-color !important;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.make-round {
+    border-radius: 50%
+}
+
+@for $i from 1 through 12 {
+    .border-r-#{$i}{
+        border-radius: $i * 1px;
+    }
+}
+@for $i from 0 through 3 {
+    @each $pos in $pos-list{
+        $property-name: border-#{$pos};
+        .#{$property-name}-#{$i}{
+            #{$property-name}-width: 0px !important;
+        }
+    }
+}

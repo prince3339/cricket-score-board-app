@@ -1,0 +1,10 @@
+@for $i from 0 through 10 {
+    $opacity: $i * 10;
+    $classPart: $opacity;
+    @if $i > 8 {
+        $classPart: $classPart - 1;
+    }
+    .opacity-#{$classPart}{
+        opacity: $opacity/100 !important;
+    }
+}

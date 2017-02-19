@@ -1,0 +1,31 @@
+﻿.position-absolute {
+    position: absolute !important
+}
+
+.position-relative {
+    position: relative !important
+}
+
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.v-mid {
+    vertical-align: middle !important;
+}
+.v-bot {
+    vertical-align: bottom !important;
+}
+.v-top {
+    vertical-align: top !important;
+}
+
+@mixin pos ($prop) {
+  @for $i from 0 through 50 {
+    .#{$prop}-#{$i}{#{$prop}: $i!important;} 
+  }
+}
+
+@include pos('right');
+@include pos('left');
+@include pos('top');
+@include pos('bottom');

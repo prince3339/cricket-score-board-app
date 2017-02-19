@@ -1,0 +1,12 @@
+/// placeholder
+
+/// box sizing border-box property
+%box_sizing--borderbox {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/// box sizing inherit property
+%box_sizing--inherit {
+	box-sizing: inherit;
+}

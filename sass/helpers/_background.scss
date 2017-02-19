@@ -1,0 +1,15 @@
+﻿.full-image-background {
+    background-size: cover;
+    background-position: center
+}
+
+.background-overlay-static {
+    position: static
+}
+.background-fixed{
+    background-attachment: fixed
+}
+
+.background-transparent{
+    background-color: transparent !important
+}

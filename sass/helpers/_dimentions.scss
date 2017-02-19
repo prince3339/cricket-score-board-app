@@ -1,0 +1,56 @@
+﻿@mixin setDimention($property-name, $value) {
+    #{$property-name}: $value * 1px !important;
+    min-#{$property-name}: $value * 1px !important;
+    max-#{$property-name}: $value * 1px !important;
+}
+
+@mixin genDimentionClasses($length, $interval, $ignore-interval:0){
+    $property-list: width height;
+    @for $i from 0 through $length {
+        $value: $i * $interval;
+        $is-write: if(($ignore-interval > 0), if(($value % $ignore-interval == 0), 0, 1), 1);
+        @if ($is-write == 1) {
+            @each $property-name in $property-list{
+                .#{$property-name}-#{$value}{
+                    @include setDimention($property-name, $value);
+                }
+            }
+        }
+    }
+}
+
+//*********************
+//MAKE SQUARES
+//*********************
+//*
+//USAGE: @include setSquares();
+//*
+@mixin setSquares($length: 30){
+    @for $i from 1 through $length {
+        $square-size: ($i + 1) * 8;
+        .square-#{$i}{
+            @include setDimention(width, $square-size);
+            @include setDimention(height, $square-size);
+
+            span {
+                font-size: $square-size * 1px;
+            }
+        }
+    }
+}
+.auto-height{
+    height:auto !important
+}
+.auto-width{
+    width:auto !important
+}
+.square-auto{
+    height:auto !important;
+    width:auto !important
+}
+
+@include setSquares();
+
+@include genDimentionClasses(100, 5);
+@include genDimentionClasses(100, 8, 5);
+

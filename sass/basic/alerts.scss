@@ -1,0 +1,14 @@
+$success-color: #8BC34A;
+$error-color: #F44336;
+$warning-color: #FF9800;
+.alert-success {
+    color: $success-color;
+}
+
+.alert-error {
+    color: $error-color;
+}
+
+.alert-warning {
+    color: $warning-color;
+}
