@@ -1,11 +1,11 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .service('setMatchService', setMatchService);
+        .service('SetMatchService', SetMatchService);
 
-    setMatchService.$inject = ['$state'];
+    SetMatchService.$inject = ['$state'];
 
-    function setMatchService($state) {
+    function SetMatchService($state) {
         var vm = this;
         vm.getGroupOneCountries = getGroupOneCountries;
         vm.getGroupTwoCountries = getGroupTwoCountries;
@@ -13,7 +13,7 @@
 
         var groupOne = ['Bangladesh', 'Australia'];
         var groupTwo = ['India', 'Pakistan'];
-        var matches = []
+        var matches = [];
 
         function getGroupOneCountries() {
             return groupOne;
@@ -26,16 +26,16 @@
         function setMatch(match) {
             if (localStorage.matches) {
                 matches = JSON.parse(localStorage.getItem("matches"));
-                match.matchID = matches.length + 1;
+                match.matchId = matches.length + 1;
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             } else {
-                match.matchID = 1;
+                match.matchId = 1;
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             }
             console.log(matches);
-            $state.go('play', { matchId: 1, over: 1, ball: 0 });
+            $state.go('play', { matchId: match.matchId, over: 1, ball: 0 });
         }
 
     }

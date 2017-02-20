@@ -10,13 +10,13 @@
             .state('home', {
                 url: '/start',
                 templateUrl: 'src/app/score-board/view/set-match.view.html',
-                controller: 'setMatchController',
+                controller: 'SetMatchController',
                 controllerAs: 'vm'
             })
             .state('play', {
                 url: '/play/{matchId}/{over}/{ball}',
                 templateUrl: 'src/app/score-board/view/play-game.view.html',
-                controller: 'playGameController',
+                controller: 'PlayGameController',
                 controllerAs: 'vm'
             });
         $urlRouterProvider

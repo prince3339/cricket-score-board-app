@@ -1,22 +1,21 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .controller('setMatchController', scoreBoardController);
+        .controller('SetMatchController', SetMatchController);
 
-    scoreBoardController.$inject = ['setMatchService'];
+    SetMatchController.$inject = ['SetMatchService'];
 
-    function scoreBoardController(setMatchService) {
+    function SetMatchController(SetMatchService) {
         var vm = this;
 
         vm.startGame = startGame;
 
-        vm.groupOne = setMatchService.getGroupOneCountries();
-        vm.groupTwo = setMatchService.getGroupTwoCountries();
+        vm.groupOne = SetMatchService.getGroupOneCountries();
+        vm.groupTwo = SetMatchService.getGroupTwoCountries();
         vm.bowlingStatus = 'teamOne';
 
 
         function startGame() {
-
             var match = {
                 teamOne: vm.teamOne,
                 teamTwo: vm.teamTwo,
@@ -24,7 +23,7 @@
                 batting: vm.bowlingStatus == 'teamOne' ? vm.teamTwo : vm.teamOne
             };
 
-            setMatchService.setMatch(match);
+            SetMatchService.setMatch(match);
         }
 
     }
