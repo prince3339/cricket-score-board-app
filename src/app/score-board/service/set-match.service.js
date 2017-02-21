@@ -35,7 +35,7 @@
                 localStorage.setItem('matches', JSON.stringify(matches));
             }
             console.log(matches);
-            $state.go('play', { matchId: match.matchId, over: 1, ball: 0 });
+            $state.go('play', { matchId: match.matchId, over: 0, ball: 0 });
         }
 
     }

@@ -5,33 +5,51 @@
                 <ul>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="score">Score:</label>
-                        <span class="opacity-60">{{vm.currentMatchInfo[0].batting}} - 10</span>
+                        <span class="opacity-60">{{vm.currentMatchInfo.batting}} - 
+                            <span ng-if="vm.totalRun !== undefined">
+                                {{vm.totalRun}}
+                            </span>
+                        <span ng-if="vm.totalRun === undefined">
+                                0
+                            </span>
+                        </span>
                     </li>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="over">Over:</label>
-                        <span class="opacity-60">{{vm.currentMatchInfo[0].matchResults['vm.currentMatchResultLength']}}.{{vm.currentMatchInfo[0].matchResults[vm.currentMatchInfo[0].matchResults.length].balls}}</span>
+                        <span class="opacity-60">
+                            <span ng-if="!vm.over && !vm.balls">
+                                0.0
+                            </span>
+                        <span ng-if="vm.balls != undefined">
+                                {{vm.over}}.{{vm.balls}}
+                            </span>
+                        </span>
                     </li>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="bowling">Bowling:</label>
-                        <span class="opacity-60">{{vm.currentMatchInfo[0].bowling}}</span>
+                        <span class="opacity-60">{{vm.currentMatchInfo.bowling}}</span>
                     </li>
                 </ul>
                 <div class="margin-top-24">
                     <md-button ng-disabled="vm.btnDisabled" ng-click="vm.bowling()" class="md-raised md-primary margin-0">Bowl</md-button>
-                    <md-button class="md-primary margin-left-16">New match</md-button>
+                    <md-button ui-sref="home" class="md-primary margin-left-16">New match</md-button>
                 </div>
             </md-card>
 
             <md-card class="padding-24">
-                <h2>Statistics of match : {{vm.currentMatchInfo[0].matchId}}</h2>
+                <h2>Statistics of match : {{vm.currentMatchInfo.matchId}}</h2>
                 <table class="cric-table font-size-fixed-14">
                     <tr>
                         <th>Overs</th>
                         <th>Run per ball</th>
                         <th>Commentry</th>
                     </tr>
-                    <tr ng-repeat="result in vm.currentMatchInfo[0].matchResults">
-                        <td>{{result.over}}.{{result.balls}}</td>
+                    <tr ng-repeat="result in vm.currentMatchInfo.matchResults">
+                        <td>
+                            <span ui-sref="play({ matchId: match.matchId, over: 0, ball: 0 })">
+                                {{result.over}}.{{result.balls}}
+                            </span>
+                        </td>
                         <td>{{result.runPerBall}}</td>
                         <td>{{result.commentry}}</td>
                     </tr>

@@ -10,45 +10,23 @@
         vm.bowling = bowling;
 
         var matchId = $stateParams.matchId;
+        var overParam = $stateParams.over;
+        var ballParam = $stateParams.ball;
 
-        var balls = 0,
-            runPerBall = 0,
-            over = 0,
-            totalRun = 0,
-            matchResults = [];
+        vm.currentMatchInfo = PlayGameService.matchResult || PlayGameService.getCurrentMatchInfo(matchId);
 
-        //vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchId);
 
-        function randomRunGenerator() {
-            var run = [0, 1, 2, 3, 4, 6];
-            return run[Math.floor(Math.random() * run.length)];
-        }
 
         function bowling() {
-            balls++;
-            runPerBall = randomRunGenerator();
-            if (balls == 6) {
-                balls = 0;
-                over++;
-            }
-            totalRun += runPerBall;
-            if (over == 2) {
-                vm.btnDisabled = true;
-            }
+            
+            PlayGameService.bowl(matchId, overParam, ballParam);
 
-            var matchResultPerBall = {
-                balls: balls,
-                runPerBall: runPerBall,
-                totalRun: totalRun,
-                over: over,
-                commentry: 'Dummy commentry!!!'
-            };
 
-            matchResults.push(matchResultPerBall);
-            PlayGameService.saveRecordPerBall(matchResults, matchId);
-            vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchId);
-            var currentMatchResultLength = vm.currentMatchInfo[0].matchResults.length;
-            vm.over = vm.currentMatchInfo[0].matchResults[currentMatchResultLength].over;
+            //var currentMatchResultLength = vm.currentMatchInfo.matchResults.length;
+            //vm.over = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].over;
+            //vm.balls = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].balls;
+            //vm.totalRun = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].totalRun;
+
             console.log(vm.over);
         }
 
