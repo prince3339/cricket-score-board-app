@@ -13,12 +13,12 @@
         var overParam = $stateParams.over;
         var ballParam = $stateParams.ball;
 
-        vm.currentMatchInfo = PlayGameService.matchResult || PlayGameService.getCurrentMatchInfo(matchId);
+        vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchId);
 
 
 
         function bowling() {
-            
+
             PlayGameService.bowl(matchId, overParam, ballParam);
 
 

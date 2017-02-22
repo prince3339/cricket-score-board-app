@@ -8,15 +8,13 @@
     function PlayGameService($location, $state, $stateParams, _) {
         var vm = this,
             allMatches,
-            totalRun,
-            existingMatchInfo = getCurrentMatchInfo($stateParams.matchId),
-            matchResults  = existingMatchInfo.matchResults ? existingMatchInfo.matchResults: [];
+            totalRun;
+        var matchResults = [];
+        if ($stateParams.matchId) {
+            vm.existingMatchInfo = getCurrentMatchInfo($stateParams.matchId);
+            matchResults = vm.existingMatchInfo.matchResults ? vm.existingMatchInfo.matchResults : [];
 
-        vm.getCurrentMatchInfo = getCurrentMatchInfo;
-        vm.saveRecordPerBall = saveRecordPerBall;
-        vm.getAllMatchInfo = getAllMatchInfo;
-        vm.getMatchInfoPerBall = getMatchInfoPerBall;
-        vm.bowl = bowl;
+        }
 
         function randomRunGenerator() {
             var run = [0, 1, 2, 3, 4, 6];
@@ -52,7 +50,7 @@
 
             vm.matchResult = getCurrentMatchInfo(matchId);
 
-            $state.go('play', { matchId: matchId, over: over, ball: ball });            
+            $state.go('play', { matchId: matchId, over: over, ball: ball });
         }
 
         function getCurrentMatchInfo(matchId) {
@@ -68,10 +66,10 @@
 
         }
 
-        function getMatchInfoPerBall (matchId, over, ball) {
+        function getMatchInfoPerBall(matchId, over, ball) {
             var targetMatch = getCurrentMatchInfo(matchId);
             var targetMatchResults = _.pick(targetMatch, 'matchResults');
-            var selectedBallsResult = _.find(targetMatchResults.matchResults, {over: over, balls: ball});
+            var selectedBallsResult = _.find(targetMatchResults.matchResults, { over: over, balls: ball });
             console.log(targetMatchResults.matchResults);
         }
 
@@ -90,5 +88,11 @@
             });
             localStorage.setItem('matches', JSON.stringify(allMatchesUpdated));
         }
+
+        vm.getCurrentMatchInfo = getCurrentMatchInfo;
+        vm.saveRecordPerBall = saveRecordPerBall;
+        vm.getAllMatchInfo = getAllMatchInfo;
+        vm.getMatchInfoPerBall = getMatchInfoPerBall;
+        vm.bowl = bowl;
     }
 })();

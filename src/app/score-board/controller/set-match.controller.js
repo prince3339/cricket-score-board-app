@@ -3,9 +3,9 @@
     angular.module('scoreBoard')
         .controller('SetMatchController', SetMatchController);
 
-    SetMatchController.$inject = ['SetMatchService'];
+    SetMatchController.$inject = ['SetMatchService', 'PlayGameService', '$stateParams'];
 
-    function SetMatchController(SetMatchService) {
+    function SetMatchController(SetMatchService, PlayGameService, $stateParams) {
         var vm = this;
 
         vm.startGame = startGame;
@@ -23,6 +23,14 @@
                 batting: vm.bowlingStatus == 'teamOne' ? vm.teamTwo : vm.teamOne
             };
 
+
+            //existingMatchInfo = PlayGameService.getCurrentMatchInfo($stateParams.matchId),
+            console.log(PlayGameService.existingMatchInfo);
+            // if (PlayGameService.existingMatchInfo.matchResults) {
+            //     PlayGameService.existingMatchInfo.matchResults = [];
+            // }
+            // matchResults = existingMatchInfo.matchResults ? existingMatchInfo.matchResults : [];
+            // console.log(PlayGameService.existingMatchInfo);
             SetMatchService.setMatch(match);
         }
 
