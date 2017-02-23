@@ -6,29 +6,24 @@
     PlayGameController.$inject = ['PlayGameService', '$stateParams'];
 
     function PlayGameController(PlayGameService, $stateParams) {
-        var vm = this;
-        vm.bowling = bowling;
+        var vm = this;   
 
-        var matchId = $stateParams.matchId;
-        var overParam = $stateParams.over;
-        var ballParam = $stateParams.ball;
-
-        vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchId);
-
-
+        var matchIdParam = parseInt($stateParams.matchId);
+        var overParam = parseInt($stateParams.over);
+        var ballParam = parseInt($stateParams.ball);
 
         function bowling() {
-
-            PlayGameService.bowl(matchId, overParam, ballParam);
-
-
-            //var currentMatchResultLength = vm.currentMatchInfo.matchResults.length;
-            //vm.over = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].over;
-            //vm.balls = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].balls;
-            //vm.totalRun = vm.currentMatchInfo.matchResults[currentMatchResultLength - 1].totalRun;
+            var matchId = parseInt($stateParams.matchId);
+            var over = parseInt($stateParams.over);
+            var ball = parseInt($stateParams.ball);
+            PlayGameService.bowl(matchId, over, ball);
 
             console.log(vm.over);
         }
 
+        vm.bowling = bowling;
+        vm.targetMatchIndex = PlayGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
+        vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchIdParam);        
+        console.log(vm.targetMatchIndex, matchIdParam, overParam, ballParam);
     }
 })();

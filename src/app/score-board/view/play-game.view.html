@@ -44,9 +44,9 @@
                         <th>Run per ball</th>
                         <th>Commentry</th>
                     </tr>
-                    <tr ng-repeat="result in vm.currentMatchInfo.matchResults">
-                        <td>
-                            <span ui-sref="play({ matchId: match.matchId, over: 0, ball: 0 })">
+                    <tr ng-repeat="result in vm.currentMatchInfo.matchResults | limitTo: vm.targetMatchIndex + 1">
+                        <td class="cur-pointer">
+                            <span ui-sref="play({ matchId: vm.currentMatchInfo.matchId, over: result.over, ball: result.balls })">
                                 {{result.over}}.{{result.balls}}
                             </span>
                         </td>

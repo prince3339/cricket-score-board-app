@@ -7,30 +7,29 @@
 
     function SetMatchService($state) {
         var vm = this;
-        vm.getGroupOneCountries = getGroupOneCountries;
-        vm.getGroupTwoCountries = getGroupTwoCountries;
+        vm.getCountries = getCountries;
         vm.setMatch = setMatch;
-
-        var groupOne = ['Bangladesh', 'Australia'];
-        var groupTwo = ['India', 'Pakistan'];
+        
         var matches = [];
 
-        function getGroupOneCountries() {
-            return groupOne;
+        function getCountries() {
+            return {
+                groupOne: ['Bangladesh', 'Australia'],
+                groupTwo: ['India', 'Pakistan']
+            };
         }
 
-        function getGroupTwoCountries() {
-            return groupTwo;
-        }
 
         function setMatch(match) {
             if (localStorage.matches) {
                 matches = JSON.parse(localStorage.getItem("matches"));
-                match.matchId = matches.length + 1;
+                match.matchId =  matches.length + 1;
+                match.matchResults = [];
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             } else {
                 match.matchId = 1;
+                match.matchResults = [];
                 matches.push(match);
                 localStorage.setItem('matches', JSON.stringify(matches));
             }

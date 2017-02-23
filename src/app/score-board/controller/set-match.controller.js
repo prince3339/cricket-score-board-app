@@ -10,15 +10,12 @@
 
         vm.startGame = startGame;
 
-        vm.groupOne = SetMatchService.getGroupOneCountries();
-        vm.groupTwo = SetMatchService.getGroupTwoCountries();
+        vm.countries = SetMatchService.getCountries();
         vm.bowlingStatus = 'teamOne';
 
 
         function startGame() {
             var match = {
-                teamOne: vm.teamOne,
-                teamTwo: vm.teamTwo,
                 bowling: vm.bowlingStatus == 'teamOne' ? vm.teamOne : vm.teamTwo,
                 batting: vm.bowlingStatus == 'teamOne' ? vm.teamTwo : vm.teamOne
             };

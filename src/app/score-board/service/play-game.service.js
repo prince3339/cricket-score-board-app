@@ -10,11 +10,7 @@
             allMatches,
             totalRun;
         var matchResults = [];
-        if ($stateParams.matchId) {
-            vm.existingMatchInfo = getCurrentMatchInfo($stateParams.matchId);
-            matchResults = vm.existingMatchInfo.matchResults ? vm.existingMatchInfo.matchResults : [];
 
-        }
 
         function randomRunGenerator() {
             var run = [0, 1, 2, 3, 4, 6];
@@ -22,6 +18,12 @@
         }
 
         function bowl(matchId, over, ball) {
+
+            if ($stateParams.matchId) {
+                var existingMatchInfo = getCurrentMatchInfo(parseInt($stateParams.matchId));
+                matchResults = existingMatchInfo.matchResults;
+            }
+
             ball++;
             if (ball >= 6) {
                 ball = 0;
@@ -34,9 +36,9 @@
 
             var matchResultPerBall = {
                 balls: ball,
+                over: over,
                 runPerBall: randomRunGenerator(),
                 totalRun: 0,
-                over: over,
                 commentry: 'Dummy commentry!!!'
             };
 
@@ -51,6 +53,7 @@
             vm.matchResult = getCurrentMatchInfo(matchId);
 
             $state.go('play', { matchId: matchId, over: over, ball: ball });
+            //getMatchInfoPerBall(matchId, over, ball);
         }
 
         function getCurrentMatchInfo(matchId) {
@@ -69,8 +72,13 @@
         function getMatchInfoPerBall(matchId, over, ball) {
             var targetMatch = getCurrentMatchInfo(matchId);
             var targetMatchResults = _.pick(targetMatch, 'matchResults');
-            var selectedBallsResult = _.find(targetMatchResults.matchResults, { over: over, balls: ball });
-            console.log(targetMatchResults.matchResults);
+            // var selectedBallsResult = _.filter(targetMatchResults.matchResults, function(result) {
+            //     return result.over === over && result.balls === ball;
+            // });
+            var selectedBallsResult = _.find(targetMatchResults.matchResults, {balls: ball, over: over});
+            var selectedBallsResultIndex = _.indexOf(targetMatchResults.matchResults, selectedBallsResult);
+            console.log(targetMatchResults.matchResults);            
+            return selectedBallsResultIndex;
         }
 
         function getAllMatchInfo() {

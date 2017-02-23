@@ -8,7 +8,9 @@
                         <label>Select Team 1</label>
                         <md-select ng-model="vm.teamOne" required name="teamOne">
                             <md-optgroup label="Group A">
-                                <md-option ng-value="country" ng-repeat="country in vm.groupOne">{{country}}</md-option>
+                                <md-option ng-value="country" ng-repeat="country in vm.countries.groupOne">
+                                    {{country}}
+                                </md-option>
                             </md-optgroup>
                         </md-select>
                         <!--<div ng-messages="matchSelectForm.teamOne.$error">
@@ -20,7 +22,7 @@
                         <label>Select Team 2</label>
                         <md-select ng-model="vm.teamTwo" required name="teamTwo">
                             <md-optgroup label="Group B">
-                                <md-option ng-value="country" ng-repeat="country in vm.groupTwo">
+                                <md-option ng-value="country" ng-repeat="country in vm.countries.groupTwo">
                                     {{country}}
                                 </md-option>
                             </md-optgroup>
