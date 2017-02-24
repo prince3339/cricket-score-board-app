@@ -9,7 +9,7 @@
         var vm = this,
             allMatches,
             totalRun;
-        var matchResults = [];
+        var matchResultsPerBall = [];
 
 
         function randomRunGenerator() {
@@ -21,7 +21,7 @@
 
             if ($stateParams.matchId) {
                 var existingMatchInfo = getCurrentMatchInfo(parseInt($stateParams.matchId));
-                matchResults = existingMatchInfo.matchResults;
+                matchResultsPerBall = existingMatchInfo.matchResultsPerBall;
             }
 
             ball++;
@@ -30,25 +30,25 @@
                 over++;
             }
 
-            if (over == 2) {
-                vm.btnDisabled = true;
-            }
-
-            var matchResultPerBall = {
+            var perBallStats = {
                 balls: ball,
                 over: over,
                 runPerBall: randomRunGenerator(),
-                totalRun: 0,
-                commentry: 'Dummy commentry!!!'
+                commentry: 'Dummy commentry!!!',
             };
 
-            matchResults.push(matchResultPerBall);
+           
+            
+            var gameOver = over==2? true:false;
 
-            matchResults.forEach(function(result) {
-                return result.totalRun += result.runPerBall;
-            });
+            matchResultsPerBall.push(perBallStats);
 
-            saveRecordPerBall(matchResults, matchId);
+            totalRun = matchResultsPerBall.reduce(function(initialValue, result) {
+                return initialValue + result.runPerBall;
+            }, 0);
+            
+
+            saveRecordPerBall(matchResultsPerBall, matchId, gameOver, totalRun);
 
             vm.matchResult = getCurrentMatchInfo(matchId);
 
@@ -71,26 +71,31 @@
 
         function getMatchInfoPerBall(matchId, over, ball) {
             var targetMatch = getCurrentMatchInfo(matchId);
-            var targetMatchResults = _.pick(targetMatch, 'matchResults');
+            var targetMatchResults = _.pick(targetMatch, 'matchResultsPerBall');
             // var selectedBallsResult = _.filter(targetMatchResults.matchResults, function(result) {
             //     return result.over === over && result.balls === ball;
             // });
-            var selectedBallsResult = _.find(targetMatchResults.matchResults, {balls: ball, over: over});
-            var selectedBallsResultIndex = _.indexOf(targetMatchResults.matchResults, selectedBallsResult);
-            console.log(targetMatchResults.matchResults);            
-            return selectedBallsResultIndex;
+            var selectedBallsResult = _.find(targetMatchResults.matchResultsPerBall, {balls: ball, over: over});
+            var selectedBallsResultIndex = _.indexOf(targetMatchResults.matchResultsPerBall, selectedBallsResult);
+            console.log(targetMatchResults.matchResultsPerBall);            
+            return {
+                lastBallResult : selectedBallsResult,
+                lastBallIndex : selectedBallsResultIndex
+            };
         }
 
         function getAllMatchInfo() {
             return JSON.parse(localStorage.getItem('matches'));
         }
 
-        function saveRecordPerBall(matchResults, matchId) {
+        function saveRecordPerBall(matchResultsPerBall, matchId, gameOver, totalRun) {
             allMatches = getAllMatchInfo();
             var allMatchesUpdated = allMatches.map(function(match) {
                 //var updatedMatches = {};
                 if (match.matchId == matchId) {
-                    match.matchResults = matchResults;
+                    match.matchResultsPerBall = matchResultsPerBall;
+                    match.gameOver = gameOver;
+                    match.totalRun = totalRun;
                 }
                 return match;
             });

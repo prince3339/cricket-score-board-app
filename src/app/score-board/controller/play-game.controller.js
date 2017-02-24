@@ -22,7 +22,7 @@
         }
 
         vm.bowling = bowling;
-        vm.targetMatchIndex = PlayGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
+        vm.targetMatchSummary = PlayGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
         vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchIdParam);        
         console.log(vm.targetMatchIndex, matchIdParam, overParam, ballParam);
     }

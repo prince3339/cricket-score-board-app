@@ -10,7 +10,7 @@
         vm.getCountries = getCountries;
         vm.setMatch = setMatch;
         
-        var matches = [];
+        var matches;
 
         function getCountries() {
             return {
@@ -21,18 +21,13 @@
 
 
         function setMatch(match) {
-            if (localStorage.matches) {
-                matches = JSON.parse(localStorage.getItem("matches"));
-                match.matchId =  matches.length + 1;
-                match.matchResults = [];
-                matches.push(match);
-                localStorage.setItem('matches', JSON.stringify(matches));
-            } else {
-                match.matchId = 1;
-                match.matchResults = [];
-                matches.push(match);
-                localStorage.setItem('matches', JSON.stringify(matches));
-            }
+            matches = localStorage.matches? (JSON.parse(localStorage.getItem("matches"))) : [];
+            match.matchId = matches? matches.length + 1: 1;
+            match.matchResultsPerBall = [];
+            //match.matchResults.totalRun = 0;
+            matches.push(match);
+            localStorage.setItem('matches', JSON.stringify(matches));
+
             console.log(matches);
             $state.go('play', { matchId: match.matchId, over: 0, ball: 0 });
         }

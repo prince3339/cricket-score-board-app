@@ -6,24 +6,18 @@
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="score">Score:</label>
                         <span class="opacity-60">{{vm.currentMatchInfo.batting}} - 
-                            <span ng-if="vm.totalRun !== undefined">
-                                {{vm.totalRun}}
-                            </span>
-                        <span ng-if="vm.totalRun === undefined">
-                                0
+                            <span>
+                                {{vm.currentMatchInfo.totalRun}}
                             </span>
                         </span>
                     </li>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="over">Over:</label>
-                        <span class="opacity-60">
-                            <span ng-if="!vm.over && !vm.balls">
-                                0.0
+                        <div class="opacity-60 display-inline-block">
+                            <span>
+                                {{vm.targetMatchSummary.lastBallResult.over}}.{{vm.targetMatchSummary.lastBallResult.balls}}
                             </span>
-                        <span ng-if="vm.balls != undefined">
-                                {{vm.over}}.{{vm.balls}}
-                            </span>
-                        </span>
+                        </div>
                     </li>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="bowling">Bowling:</label>
@@ -31,7 +25,7 @@
                     </li>
                 </ul>
                 <div class="margin-top-24">
-                    <md-button ng-disabled="vm.btnDisabled" ng-click="vm.bowling()" class="md-raised md-primary margin-0">Bowl</md-button>
+                    <md-button ng-disabled="vm.currentMatchInfo.gameOver" ng-click="vm.bowling()" class="md-raised md-primary margin-0">Bowl</md-button>
                     <md-button ui-sref="home" class="md-primary margin-left-16">New match</md-button>
                 </div>
             </md-card>
@@ -44,7 +38,7 @@
                         <th>Run per ball</th>
                         <th>Commentry</th>
                     </tr>
-                    <tr ng-repeat="result in vm.currentMatchInfo.matchResults | limitTo: vm.targetMatchIndex + 1">
+                    <tr ng-repeat="result in vm.currentMatchInfo.matchResultsPerBall | limitTo: vm.targetMatchSummary.lastBallIndex + 1">
                         <td class="cur-pointer">
                             <span ui-sref="play({ matchId: vm.currentMatchInfo.matchId, over: result.over, ball: result.balls })">
                                 {{result.over}}.{{result.balls}}
