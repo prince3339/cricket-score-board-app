@@ -3,7 +3,7 @@
 
 angular.module('common')
         .component('loading', {
-            template: '<img src="/assets/spinner.svg" ng-if="$ctrl.show">',
+            template: '<img src="https://prince3339.github.io/cricket-score-board-app/assets/spinner.svg" ng-if="$ctrl.show">',
             controller: LoadingController
         });
 
