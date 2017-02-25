@@ -17,14 +17,13 @@
     <!--
     Your HTML content here
   -->
+    <!-- Fixed position loading indicator -->
+    <loading class="loading-indicator"></loading>
+
     <div>
-        <md-toolbar md-scroll-shrink>
-            <div class="md-toolbar-tools">
-                <h3>
-                    <span>Cricket Score App</span>
-                </h3>
-            </div>
-        </md-toolbar>
+        <toobar-component app-title="Cricket Score App"
+                          theme-name="md-primary">
+        </toobar-component>
         <md-content class="padding-h-32">
             <ui-view></ui-view>
         </md-content>
@@ -41,6 +40,7 @@
 
     <!-- Angular Material Library -->
     <script src="/src/lib/angular-material/angular-material.min.js"></script>
+    <script src="/src/lib/material-angular-paging/build/dist.min.js"></script>
 
     <!--lodash-->
     <script src="/src/lib/underscore.min.js"></script>
@@ -48,12 +48,20 @@
     <!--main app module (cricketScore)-->
     <script src="/src/app/cricket-game.module.js"></script>
     <script src="/src/app/cricket-game.routes.js"></script>
+
+    <!--common module-->
+    <script src="/src/app/common/common.module.js"></script>
+    <script src="/src/app/common/component/toolbar.component.js"></script>
+    <script src="/src/app/common/component/loading.component.js"></script> 
+    <script src="/src/app/common/component/loading.interceptor.js"></script>
+
     <!--score-board-->
     <script src="/src/app/score-board/score-board.module.js"></script>
     <script src="/src/app/score-board/service/set-match.service.js"></script>
     <script src="/src/app/score-board/controller/set-match.controller.js"></script>
 
-    <script src="/src/app/score-board/service/play-game.service.js"></script>
+    <script src="/src/app/score-board/service/play-game.service.js"></script> 
+    <script src="/src/app/score-board/service/play-game.rest.service.js"></script>
     <script src="/src/app/score-board/controller/play-game.controller.js"></script>
 </body>
 

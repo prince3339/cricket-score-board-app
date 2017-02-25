@@ -1,16 +1,18 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .service('PlayGameService', PlayGameService);
+        .service('playGameService', PlayGameService);
 
-    PlayGameService.$inject = ['$location', '$state', '$stateParams', '_'];
+    PlayGameService.$inject = ['$location', '$state', '$stateParams', '_', '$q', '$timeout'];
 
-    function PlayGameService($location, $state, $stateParams, _) {
+    function PlayGameService($location, $state, $stateParams, _, $q, $timeout) {
         var vm = this,
             allMatches,
             totalRun;
         var matchResultsPerBall = [];
-
+        var perBallStats = {
+            totalRun: 0
+        };
 
         function randomRunGenerator() {
             var run = [0, 1, 2, 3, 4, 6];
@@ -30,23 +32,30 @@
                 over++;
             }
 
-            var perBallStats = {
-                balls: ball,
-                over: over,
-                runPerBall: randomRunGenerator(),
-                commentry: 'Dummy commentry!!!',
-            };
+            perBallStats.balls = ball;
+            perBallStats.over = over;
+            perBallStats.runPerBall = randomRunGenerator();
+            perBallStats.commentry = 'Dummy commentry!!!';
 
-           
-            
+
             var gameOver = over==2? true:false;
-
+           
             matchResultsPerBall.push(perBallStats);
 
             totalRun = matchResultsPerBall.reduce(function(initialValue, result) {
                 return initialValue + result.runPerBall;
             }, 0);
-            
+
+            angular.forEach(matchResultsPerBall, function(item, index) {
+                if((matchResultsPerBall.length - 1) === index) {
+                    item.totalRun = totalRun;
+                }else{
+                    item.totalRun = item.totalRun;
+                }
+
+                return item;
+            });
+
 
             saveRecordPerBall(matchResultsPerBall, matchId, gameOver, totalRun);
 
@@ -77,7 +86,7 @@
             // });
             var selectedBallsResult = _.find(targetMatchResults.matchResultsPerBall, {balls: ball, over: over});
             var selectedBallsResultIndex = _.indexOf(targetMatchResults.matchResultsPerBall, selectedBallsResult);
-            console.log(targetMatchResults.matchResultsPerBall);            
+            //console.log(targetMatchResults.matchResultsPerBall);            
             return {
                 lastBallResult : selectedBallsResult,
                 lastBallIndex : selectedBallsResultIndex

@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    angular.module('scoreBoard', []);
+    angular.module('scoreBoard', ['cl.paging', 'common']);
 })();

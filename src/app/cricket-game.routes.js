@@ -10,13 +10,13 @@
             .state('home', {
                 url: '/start',
                 templateUrl: 'src/app/score-board/view/set-match.view.html',
-                controller: 'SetMatchController',
+                controller: 'setMatchController',
                 controllerAs: 'vm'
             })
             .state('play', {
                 url: '/play/{matchId}/{over}/{ball}',
                 templateUrl: 'src/app/score-board/view/play-game.view.html',
-                controller: 'PlayGameController',
+                controller: 'playGameController',
                 controllerAs: 'vm',
                 // resolve: {
                 //     matchResultByParam: ['$stateParams', 'SetMatchService', function($stateParams, SetMatchService) {

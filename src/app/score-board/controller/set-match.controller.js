@@ -1,16 +1,16 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .controller('SetMatchController', SetMatchController);
+        .controller('setMatchController', SetMatchController);
 
-    SetMatchController.$inject = ['SetMatchService', 'PlayGameService', '$stateParams'];
+    SetMatchController.$inject = ['setMatchService', 'playGameService', '$stateParams'];
 
-    function SetMatchController(SetMatchService, PlayGameService, $stateParams) {
+    function SetMatchController(setMatchService, playGameService, $stateParams) {
         var vm = this;
 
         vm.startGame = startGame;
 
-        vm.countries = SetMatchService.getCountries();
+        vm.countries = setMatchService.getCountries();
         vm.bowlingStatus = 'teamOne';
 
 
@@ -22,13 +22,13 @@
 
 
             //existingMatchInfo = PlayGameService.getCurrentMatchInfo($stateParams.matchId),
-            console.log(PlayGameService.existingMatchInfo);
+            console.log(playGameService.existingMatchInfo);
             // if (PlayGameService.existingMatchInfo.matchResults) {
             //     PlayGameService.existingMatchInfo.matchResults = [];
             // }
             // matchResults = existingMatchInfo.matchResults ? existingMatchInfo.matchResults : [];
             // console.log(PlayGameService.existingMatchInfo);
-            SetMatchService.setMatch(match);
+            setMatchService.setMatch(match);
         }
 
     }

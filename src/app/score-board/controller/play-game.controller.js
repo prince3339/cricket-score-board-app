@@ -1,29 +1,46 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .controller('PlayGameController', PlayGameController);
+        .controller('playGameController', PlayGameController);
 
-    PlayGameController.$inject = ['PlayGameService', '$stateParams'];
+    PlayGameController.$inject = ['playGameService', '$stateParams'];
 
-    function PlayGameController(PlayGameService, $stateParams) {
+    function PlayGameController(playGameService, $stateParams) {
         var vm = this;   
 
-        var matchIdParam = parseInt($stateParams.matchId);
-        var overParam = parseInt($stateParams.over);
-        var ballParam = parseInt($stateParams.ball);
+        var matchIdParam = parseInt($stateParams.matchId),
+            overParam = parseInt($stateParams.over),
+            ballParam = parseInt($stateParams.ball);
 
         function bowling() {
-            var matchId = parseInt($stateParams.matchId);
-            var over = parseInt($stateParams.over);
-            var ball = parseInt($stateParams.ball);
-            PlayGameService.bowl(matchId, over, ball);
+            var matchId = parseInt($stateParams.matchId),
+                over = parseInt($stateParams.over),
+                ball = parseInt($stateParams.ball);
+            playGameService.bowl(matchId, over, ball);
+        }
 
-            console.log(vm.over);
+        
+        function loadPages() {
+            var startIndex = (vm.paging.current - 1)*6,
+                endIndex = startIndex + 6,
+                result = angular.copy(vm.currentMatchInfo.matchResultsPerBall);
+
+            vm.resultsFiltered = result.slice(startIndex, endIndex);
+            vm.targetMatchSummary = playGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
         }
 
         vm.bowling = bowling;
-        vm.targetMatchSummary = PlayGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
-        vm.currentMatchInfo = PlayGameService.getCurrentMatchInfo(matchIdParam);        
-        console.log(vm.targetMatchIndex, matchIdParam, overParam, ballParam);
+        vm.targetMatchSummary = playGameService.getMatchInfoPerBall(matchIdParam, overParam, ballParam);
+        vm.currentMatchInfo = playGameService.getCurrentMatchInfo(matchIdParam);        
+        vm.results = vm.currentMatchInfo.matchResultsPerBall;
+        vm.paging = {
+            total: Math.ceil(vm.currentMatchInfo.matchResultsPerBall.length / 6),
+            current: 1,
+            onPageChanged: loadPages,
+        };
+
+        vm.allMatches = playGameService.getAllMatchInfo();
+
+
     }
 })();

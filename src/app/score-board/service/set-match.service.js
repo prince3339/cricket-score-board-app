@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('scoreBoard')
-        .service('SetMatchService', SetMatchService);
+        .service('setMatchService', SetMatchService);
 
     SetMatchService.$inject = ['$state'];
 

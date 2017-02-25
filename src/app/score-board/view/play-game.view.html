@@ -5,17 +5,23 @@
                 <ul>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="score">Score:</label>
-                        <span class="opacity-60">{{vm.currentMatchInfo.batting}} - 
-                            <span>
-                                {{vm.currentMatchInfo.totalRun}}
+                        <div class="opacity-60 display-inline-block">{{vm.currentMatchInfo.batting}} - 
+                            <span ng-if="vm.currentMatchInfo.totalRun">
+                                {{vm.targetMatchSummary.lastBallResult.totalRun}}
                             </span>
-                        </span>
+                            <span ng-if="!vm.currentMatchInfo.totalRun">
+                                0
+                            </span>
+                        </div>
                     </li>
                     <li class="font-size-fixed-16">
                         <label class="crick-label" for="over">Over:</label>
                         <div class="opacity-60 display-inline-block">
-                            <span>
+                            <span ng-if="vm.targetMatchSummary.lastBallResult.balls || vm.targetMatchSummary.lastBallResult.over">
                                 {{vm.targetMatchSummary.lastBallResult.over}}.{{vm.targetMatchSummary.lastBallResult.balls}}
+                            </span>
+                            <span ng-if="!vm.targetMatchSummary.lastBallResult.balls && !vm.targetMatchSummary.lastBallResult.over">
+                                0
                             </span>
                         </div>
                     </li>
@@ -25,7 +31,7 @@
                     </li>
                 </ul>
                 <div class="margin-top-24">
-                    <md-button ng-disabled="vm.currentMatchInfo.gameOver" ng-click="vm.bowling()" class="md-raised md-primary margin-0">Bowl</md-button>
+                    <md-button ng-disabled="vm.currentMatchInfo.gameOver || ((vm.results[vm.results.length-1].over !== vm.targetMatchSummary.lastBallResult.over) || (vm.results[vm.results.length-1].balls !== vm.targetMatchSummary.lastBallResult.balls))" ng-click="vm.bowling()" class="md-raised md-primary margin-0">Bowl</md-button>
                     <md-button ui-sref="home" class="md-primary margin-left-16">New match</md-button>
                 </div>
             </md-card>
@@ -38,9 +44,10 @@
                         <th>Run per ball</th>
                         <th>Commentry</th>
                     </tr>
-                    <tr ng-repeat="result in vm.currentMatchInfo.matchResultsPerBall | limitTo: vm.targetMatchSummary.lastBallIndex + 1">
-                        <td class="cur-pointer">
-                            <span ui-sref="play({ matchId: vm.currentMatchInfo.matchId, over: result.over, ball: result.balls })">
+                    <tr class="cur-pointer" ng-repeat="result in vm.resultsFiltered | limitTo:      vm.targetMatchSummary.lastBallIndex + 1"
+                        ui-sref="play({ matchId: vm.currentMatchInfo.matchId, over: result.over, ball: result.balls })">
+                        <td>
+                            <span>
                                 {{result.over}}.{{result.balls}}
                             </span>
                         </td>
@@ -48,6 +55,35 @@
                         <td>{{result.commentry}}</td>
                     </tr>
                 </table>
+
+                <div class="margin-top-20" layout="row" layout-align="space-between center">
+                    <cl-paging flex 
+                               cl-pages="vm.paging.total" 
+                               cl-steps="6" 
+                               cl-page-changed="vm.paging.onPageChanged()" 
+                               cl-align="start start" 
+                               cl-current-page="vm.paging.current">
+                    </cl-paging>
+
+                    <div ng-if="(vm.results[vm.results.length-1].over !== vm.targetMatchSummary.lastBallResult.over) || (vm.results[vm.results.length-1].balls !== vm.targetMatchSummary.lastBallResult.balls)">
+                        <a class="font-size-fixed-14" ui-sref="play({ matchId: vm.currentMatchInfo.matchId, over: vm.results[vm.results.length-1].over, ball:vm.results[vm.results.length-1].balls })">
+                            See Full Score of this match
+                        </a>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div>
+            <md-card class="padding-24">
+                <h2 class="margin-0">See previous match results</h2>
+                <md-divider></md-divider>
+                <ul>
+                    <li ng-repeat="match in vm.allMatches">
+                        <a ui-sref="play({ matchId: match.matchId, over: match.matchResultsPerBall[match.matchResultsPerBall.length-1].over, ball:match.matchResultsPerBall[match.matchResultsPerBall.length-1].balls })" class="font-size-fixed-14">
+                            Match :{{match.matchId}} ({{match.batting}} vs {{match.bowling}}) 
+                        </a>
+                    </li>
+                </ul>
             </md-card>
         </div>
     </div>
