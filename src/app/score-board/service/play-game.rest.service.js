@@ -1,4 +1,4 @@
-// (function() {
+// (function(angular) {
 //     'use strict';
 //     angular.module('scoreBoard')
 //         .service('playGameRestService', PlayGameRestService);
@@ -19,4 +19,4 @@
 
 //         vm.getAllMatchInfo = getAllMatchInfo;
 //     }
-// })();
+// })(window.angular);

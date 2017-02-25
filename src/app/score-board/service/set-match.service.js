@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
     angular.module('scoreBoard')
         .service('setMatchService', SetMatchService);
@@ -33,4 +33,4 @@
         }
 
     }
-})();
+})(window.angular);

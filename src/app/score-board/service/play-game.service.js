@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
     angular.module('scoreBoard')
         .service('playGameService', PlayGameService);
@@ -117,4 +117,4 @@
         vm.getMatchInfoPerBall = getMatchInfoPerBall;
         vm.bowl = bowl;
     }
-})();
+})(window.angular);

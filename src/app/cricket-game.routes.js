@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
     angular.module('cricketGame')
         .config(routeConfig);
@@ -29,4 +29,4 @@
             .otherwise('/start');
     }
 
-})();
+})(window.angular);

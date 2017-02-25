@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
     angular.module('scoreBoard')
         .controller('playGameController', PlayGameController);
@@ -43,4 +43,4 @@
 
 
     }
-})();
+})(window.angular);

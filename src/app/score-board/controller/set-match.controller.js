@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
     angular.module('scoreBoard')
         .controller('setMatchController', SetMatchController);
@@ -32,4 +32,4 @@
         }
 
     }
-})();
+})(window.angular);
