@@ -56,7 +56,7 @@
                     </tr>
                 </table>
 
-                <div ng-if="vm.targetMatchSummary.lastBallResult.balls" class="margin-top-20" layout="row" layout-align="space-between center">
+                <div ng-if="vm.targetMatchSummary.lastBallResult.balls || vm.targetMatchSummary.lastBallResult.over" class="margin-top-20" layout="row" layout-align="space-between center">
                     <cl-paging flex 
                                cl-pages="vm.paging.total" 
                                cl-steps="6" 
